@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Account Creation</title>
+	<h2>Create an Account</h2>
+	<link rel="stylesheet" href="projectcss.css" type="text/css">
+</head>
+<body>
+<div class="createAccount">
+    <form method="POST" action="projectDBFunctions.php">
+	        <div class="username">
+            <label for="username">Username:</label>
+            <input type="username" name="username" id="username">
+        </div>
+		    <div class="email">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div class="password1">
+            <label for="pass1">Password:</label>
+            <input type="password" name="pass1" id="pass1">
+        </div>
+        <div class="password2">
+            <label for="pass2">Confirm Password:</label>
+            <input type="password" name="pass2" id="pass2" onkeyup="checkPass(); return false;">
+            <div id="confirmMessage" class="confirmMessage"></div>
+        </div>
+		<input type = "submit" id ="btnSubmit" value = "Submit" onclick="submitInfo()">
+    </form>
+</div>
+<script>
+function checkPass()
+{
+
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    var message = document.getElementById('confirmMessage');
+    if(pass1.value == pass2.value){
+        message.innerHTML = "Passwords Match!"
+		document.getElementById("btnSubmit").disabled = false;
+    }else{
+        message.innerHTML = "Passwords Do Not Match!"
+			document.getElementById("btnSubmit").disabled = true;
+    }
+}
+
+</script>
+
+</body>
+</html>

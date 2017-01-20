@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Create Event</title>
+	<h3>Create an Event!</h3>
+	<link rel="stylesheet" href="projectcss.css" type="text/css">
+</head>
+
+<body>
+	<div class="event_form">
+	<form action="event.php" method="post" id="eventForm">
+		Event Name: <input type="text" name="event_name" id="event_name"><br>
+		Host: <input type="text" name="host" id="host"><br>
+		Date (YYYY/MM/DD HH:MM):<input type="datetime-local" name="datetime" value="2016-01-03 11:42" id="datetime"><br>
+		Description: <textarea name="desc" form="eventForm"></textarea>
+		<input type="submit" value="Submit" id="formSubmit">
+	</form>
+	</div>
+</body>
+</html>

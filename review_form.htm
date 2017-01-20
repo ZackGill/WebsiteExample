@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<h3> Review an Event </h3>
+	<title>Review Event</title>
+	<link rel="stylesheet" href="projectcss.css" type="text/css">
+</head>
+
+<body>
+	<div class="review_form">
+	<form action="review.php" method="post" id="reviewForm">
+		Event Name: <input type="text" name="event_name" id="event_name"><br>
+		Host: <input type="text" name="host" id="host"><br>
+		Date (YYYY/MM/DD HH:MM):<input type="datetime-local" name="datetime" id="datetime"><br>
+		Your Rating (1-5): <input type="number" min="1" max="5" name="rating" id="number"><br>
+		Your Review: <textarea name="desc" form="reviewForm"></textarea><br>
+		<input type="submit" value="Submit" id="formSubmit">
+	</form>
+	</div>
+
+	<script type"text/javascript">
+
+		function checkDateInput() {
+			var input = document.createElement('input');
+			input.setAttribute('type','datetime-local');
+
+			var notADateValue = 'not-a-date';
+			input.setAttribute('value', notADateValue); 
+
+			return (input.value !== notADateValue);
+		}
+
+
+		var hashParams = window.location.hash.substr(1).split('&'); // Removes #
+		for (var i = 0; i < hashParams.length; i++){
+			var p = hashParams[i].split('=');
+			if(p[0] == 'datetime'){
+				var time = p[1];
+				time = decodeURIComponent(time);
+				if(checkDateInput())
+					time = time.replace(" ", "T");
+				document.getElementById(p[0]).value = time;
+				continue;
+			}
+			if(p[0] == 'event_name'){
+				var name = p[1];
+				name = decodeURIComponent(name);
+				name = name.replace("&amp;", "&");
+				document.getElementById(p[0]).value = name;
+				continue;
+			}
+			if(p[0] == 'host'){
+				var host = p[1];
+				host = decodeURIComponent(host);
+				host = host.replace("&amp;", "&");
+				document.getElementById(p[0]).value = host;
+				continue;
+			}
+			document.getElementById(p[0]).value = p[1];
+		}
+	</script>
+
+</body>
+</html>

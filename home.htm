@@ -1,0 +1,196 @@
+<html>
+<head>
+<link rel="stylesheet" href="projectcss.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+	var eventPos = 0;
+
+	function eventObj(eName, eHost, eRating, eDate, eDesc){
+		this.name = eName;
+		this.host = eHost;
+		this.rating = eRating;
+		this.datetime = eDate;
+		this.desc = eDesc;
+	}
+
+
+	function getEvents(){
+var output = [];
+		$.ajax({
+			url:"http://cis.gvsu.edu/~gillz/CIS371/Project/getEvents.php",
+			dataType: 'json',
+			success:function(json){
+				for(i = 0; (i < 5) && (eventPos < json.length); i++){
+					output.push(new eventObj(json[eventPos]['name'], json[eventPos]['host'], json[eventPos]['rating'], json[eventPos]['dateof'], json[eventPos]['description']));
+					eventPos++;
+				}
+				$.each(output, function(item, val){
+					var toAdd = '<div class="event"><h4 class="event_name">' + val.name + '</h4><h5 class="host">' + val.host + '</h5><p class="time">' + val.datetime + '</p>';
+					toAdd += '<p class="rating">Average Rating: ' + val.rating + '</p><p class="desc">' + val.desc + '</p>';
+					toAdd += '<button type="button" class="ebutton">Show Reviews</button><button type="button" class="rbutton">Review this Event</button></div>';
+					$('body').append(toAdd);
+				});
+				$(".rbutton").unbind("click");
+				$(".rbutton").click(function(){
+					var text = $(this).parent().html();
+					var $current = $(this).parent();
+					var name = text.substring(text.search("<h4"), text.search("</h4>"));
+					name = name.substring(name.search(">") + 1);
+
+					var host = text.substring(text.search("<h5"), text.search("</h5>"));
+					host = host.substring(host.search(">") + 1);
+
+					var time = text.substring(text.search("<p"), text.search("</p>"));
+					time = time.substring(time.search('>') + 1);
+
+					var urlNew = "http://cis.gvsu.edu/~gillz/CIS371/Project/review_form.htm";
+					time = encodeURIComponent(time);
+					name = encodeURIComponent(name);
+					host = encodeURIComponent(host);
+					urlNew += "#event_name=" + name +"&host=" + host + "&datetime=" + time;
+					window.location = urlNew;
+				});
+				$(".ebutton").unbind("click");
+				$(".ebutton").one("click", function(){
+					// Get rid of previous reviews, only show reviews for 1 event at a time
+					var text = $(this).parent().html();
+					var $current = $(this).parent();
+					var name = text.substring(text.search("<h4"), text.search("</h4>"));
+					name = name.substring(name.search(">") + 1);
+
+					var host = text.substring(text.search("<h5"), text.search("</h5>"));
+					host = host.substring(host.search(">") + 1);
+
+					var time = text.substring(text.search("<p"), text.search("</p>"));
+					time = time.substring(time.search('>') + 1);
+
+					// Use php script to search the DB for use
+					var reviews = [];
+					time = encodeURIComponent(time);
+					name = encodeURIComponent(name);
+					host = encodeURIComponent(host);
+					host = host.replace("amp", "");
+					name = name.replace("amp", "");
+					host = host.replace("%3B", "");
+					name = name.replace("%3B", "");
+					var urlEncode = "http://cis.gvsu.edu/~gillz/CIS371/Project/getReview.php?name="+name+"&host=" + host +"&date=" + time;
+					$.ajax({
+					url: urlEncode,
+					dataType: 'json',
+					success:function(json){
+						$.each(json, function(element, value){
+							reviews.push(new reviewObj(value['user_name'], value['rating'], value['description']));
+						});
+						
+					$.each(reviews, function(item, val){
+						var add = '<div class="review"><h5 class="user">' + val.user + ' Rated ' + val.rating + '</h5><p class="user_desc">' + val.desc + '</p></div>';
+					$current.append(add);	
+					});	
+					},
+					error:function(){
+						alert("error getting reviews");
+					}
+					});
+				});
+			},
+			error:function(jqXHR, textStatus, errorThrown){
+				alert("Error getting events " + errorThrown);
+			}
+		});
+
+	}
+
+	function reviewObj(uName, uRate, uDesc){
+		this.user = uName;
+		this.rating = uRate;
+		this.desc = uDesc;
+	}
+	$().ready(function(){
+		// Get Events to display
+		document.domain = "gvsu.edu";
+		// ajax call to update events
+		$.ajax({
+			url:"http://cis.gvsu.edu/~gillz/CIS371/Project/update.php",
+			dataType: 'html',
+			success:function(json){
+
+				},
+			error:function(err){
+				alert("error updating scores" + err);
+			}
+		});
+		getEvents();
+	});
+</script>
+</head>
+<body>
+<h3 class="title">Rusty Anchors</h3>
+<h4 class="subtitle">Rating Your Campus Events Since 2016</h4>
+<div id="stage">
+	<div id="j" class="character"></div>
+</div>
+<script>
+   // screen size variables
+        var SCREEN_WIDTH = 190,
+        SCREEN_HEIGHT = 325;;        
+         
+          var canvas = document.createElement('canvas');
+          var c = canvas.getContext('2d');
+          
+        canvas.width = SCREEN_WIDTH;
+        canvas.height = SCREEN_HEIGHT;
+        
+		//canvas variables
+        var xpos=0, 
+            ypos=0, 
+            index=0, 
+            numFrames = 19, 
+            frameSize= 328;
+         
+          // Add canvas
+          document.body.appendChild(canvas); 
+
+           //load image
+        image = new Image();
+        image.src = "rarara.png";
+        
+        image.onload = function() {
+        
+            //this is the loop set for 3 frames per second
+            setInterval(loop, 1000 / 3);
+        }
+               
+    
+        function loop() {
+
+            c.clearRect(0,0, SCREEN_HEIGHT,SCREEN_WIDTH);
+            
+            c.drawImage(image,xpos,ypos,frameSize,258,0,0,frameSize, frameSize);
+            
+            xpos += frameSize;
+            index += 1;
+            
+            //start over
+            if (index >= numFrames) {
+                xpos =0;
+                ypos =0;
+                index=0;    
+            } else if (xpos + frameSize > image.width){
+                xpos =0;
+                ypos += frameSize;
+            }
+            
+            
+        }
+
+</script>
+
+<title>Rusty Anchors</title>
+<a href="accountCreate.htm" class="link">Sign Up</a>
+<a href="signIn.htm" class="log">Log In</a>
+<a href="event_form.html" class="event_form_link"> Create a new Event</a>
+<input id="showEvents" class="event_button" type="button" value="Show More Events" onclick="getEvents();">
+</body>
+</html>

@@ -1,0 +1,463 @@
+body
+{
+	background-color: rgb(163,196,207);
+}
+
+h1
+{
+	color: darkblue;
+}
+
+/* account creation, sign in */
+h2
+{
+	color: darkblue;
+	margin-left: 8em;
+}
+
+/* event form, review form */
+h3
+{
+	color: darkblue;
+	margin-left: 15em;
+}
+
+
+/* event rating - php */
+h6
+{
+	color: darkblue;
+	margin-left: 20em;
+}
+
+/* homepage */
+.title
+{
+	font-size: xx-large;
+	margin-left: 14em;
+	top: 0em;
+}
+
+.subtitle
+{
+	font-size: x-large;
+	margin-left: 14em;
+	margin-bottom: 5em;
+	top: 4em;
+}
+
+.homepage
+{
+	font-weight: 500;
+	margin-left: 20em;
+}
+
+.title
+{
+	position: relative;
+	top: 1em;
+}
+
+.link
+{
+	color: black;
+	position: absolute;
+	right: 10em;
+	top: 1.5em;
+}
+
+.log
+{
+	color: black;
+	position: absolute;
+	right: 15em;
+	top: 1.5em;
+}
+
+.event_form_link
+{
+	color: black;
+	position: fixed;
+	right: 10em;
+	top: 4em;
+}
+
+.event_button
+{
+	color: black;
+	position: fixed;
+	right: 11.8em;
+	top: 8em;
+}
+
+.event
+{
+	border: 1px solid black;
+	display: block;
+	padding-left: 1em;
+	padding-bottom: .3em;
+	margin-left: 20em;
+	margin-right: 25em;
+	margin-top: .5em;
+}
+
+.event_name
+{
+	color: darkblue;
+	font-weight: bold;
+	margin-bottom: .3em;
+	margin-left: 1em;
+}
+
+.host
+{
+	color: darkblue;
+	font-weight: bold;
+	margin-bottom: .5em;
+	margin-left: 1.5em;
+}
+
+.time
+{
+	color: maroon;
+	font-weight: normal;
+	margin-top: .3em;
+	margin-left: 1.2em;
+}
+
+.rating
+{
+	color: maroon;
+	font-weight: normal;
+	margin-top: .3em;
+	margin-left: 1.2em;
+}
+
+.desc
+{
+	color: black;
+	font-weight: normal;
+	margin-top: .3em;
+	margin-left: 1.2em;
+}
+
+.user
+{
+	margin-left: 2em;
+}
+
+.user_desc
+{
+	font-weight: normal;
+	margin-left: 2.3em;
+}
+
+canvas
+{
+	position: absolute;
+	top: 0em;
+	left: 0em;
+}
+/* end homepage */
+
+.createAccount, .signIn
+{
+	padding: .5em;
+	font-weight: 500;
+	margin-left: 12em;
+	border: 3px inset black;
+	display: inline-block;
+	text-align: right;
+}
+
+.event_form, .review_form
+{
+	padding: .5em;
+	margin-left: 12em;
+	margin-top: 1em;
+	border: 3px inset black;
+	display: inline-block;
+}
+
+#reviewEForm
+{
+	padding: .5em;
+	margin-left: 12em;
+	margin-top: 1em;
+	border: 3px inset black;
+	display: inline-block;
+}
+
+/* account creation, sign in */
+.username, .email, .password, .password1, .password2
+{
+	margin-bottom: .3em;
+	font: Arial, Helvetica, sans-serif;
+}
+
+.no
+{
+	margin-left: 12em;
+}
+
+input[type="text"], input[type="datetime-local"], input[type="number"]
+{
+	display: block;
+	font: sans-serif, ariel;
+}
+
+textarea[name="desc"]
+{
+	display: block;
+	resize: none;
+	font: sans-serif, ariel;
+	min-height: 6em;
+	min-width: 25em;
+}
+
+/* account creation */
+input[type="submit"]
+{
+	display: block;
+	margin-top: .5em;
+	font-weight: 550;
+}
+
+@media screen and (max-width: 1050px) and (min-width: 901px)
+{
+	body
+	{
+		font-size: 1.5em;
+	}
+	
+	.event_form, .review_form
+	{
+		font-size: 1em;
+	}
+
+	#host
+	{
+		font-size: 1em;
+	}
+
+	#event_name
+	{
+		font-size: 1em;
+	}
+
+	#btnSubmit
+	{
+		font-size: 1em;
+	}
+
+	#datetime
+	{
+		font-size: 1em;
+	}
+
+	#number
+	{
+		font-size: 1em;
+	}
+
+	#formSubmit
+	{
+		font-size: 1em;
+	}
+
+	textarea
+	{
+		font-size: 1em;
+	}
+
+	.event
+	{
+		margin-right: 5em;
+		margin-left: 15em;
+		width: 20em;
+	}
+	
+	.link
+	{
+		right: 13em;
+		top: 5em;
+	}
+
+	.log
+	{
+		right: 20em;
+		top: 5em;
+	}
+	
+	.event_form_link
+	{
+		position: absolute;
+		left: .75em;
+		top: 9em;
+		font-size: 1.5em;
+	}
+
+	.event_button
+	{
+		position: absolute;
+		left: .25em;
+		top: 11em;
+		font-size: 1.5em;
+	}
+
+	.ebutton
+	{
+		font-size: 1.25em;
+	}
+	.rbutton
+	{
+		font-size: 1.25em;
+	}
+}
+
+@media screen and (max-width: 900px)
+{
+
+	body
+	{
+		font-size: 1.25em;
+	}
+	.event
+	{
+		display: inline-block;
+		margin-right: 1em;
+		margin-left: 15em;
+	}
+	
+	.link
+	{
+		right: 13em;
+		top: 7em;
+	}
+
+	.log
+	{
+		right: 20em;
+		top: 7em;
+	}
+	
+	.event_form_link
+	{
+		position: absolute;
+		left: 1.4em;
+		top: 13.4em;
+		font-size: 1.25em;
+	}
+
+	.event_button
+	{
+		position: absolute;
+		left: 1em;
+		top: 15em;
+		font-size: 1.25em;
+
+	}
+
+	.ebutton
+	{
+		font-size: 1.25em;
+	}
+	.rbutton
+	{
+		font-size: 1.25em;
+	}
+
+}
+
+@media screen and (max-width: 650px)
+{
+	/* account creation, sign in */
+	h2
+	{
+		margin-left: 3em;
+	}
+	
+	/* event form */
+	h3
+	{
+		margin-left: 5em;
+	}
+	
+	.event_button
+	{
+		left: -1.5em;
+		top: 15em;
+		font-size: 1.25em;
+
+	}
+
+	/* event rating - php */
+	h6
+	{
+		color: darkblue;
+		margin-left: 10em;
+	}
+	
+	.homepage
+	{
+		font-weight: 500;
+		margin-left: 1.5em;
+	}
+	
+	.link
+	{
+		right: 5em;
+		top: 9em;
+	}
+
+	.log
+	{
+		right: 10em;
+		top: 9em;
+	}
+
+	#showEvents
+	{
+		margin-left: 2.7em;
+		margin-top: .5em;
+	}
+
+	.event_form_link
+	{
+		position: absolute;
+		bottom: 0em;
+		left: 2em;
+	}
+	
+	.createAccount, .signIn
+	{
+		margin-left: 2em;
+	}
+	
+	.event_form, .review_form
+	{
+		margin-left: 2em;
+	}
+
+	/* account creation, sign in */
+	.username, .email, .password, .password1, .password2
+	{
+		margin-left: 2em;
+	}
+	
+	#reviewForm
+	{
+		margin-left: 6em;
+	}
+	
+	.no
+	{
+		margin-left: 6em;
+	}
+
+	input[type="text"], input[type="datetime-local"], input[type="number"]
+	{
+		display: block;
+		font: sans-serif, ariel;
+	}
+}

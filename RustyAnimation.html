@@ -1,0 +1,66 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="stage">
+    <div id="j" class="character"></div>
+</div>
+<script>
+    // screen size variables
+        var SCREEN_WIDTH = 190,
+        SCREEN_HEIGHT = 325;       
+         
+          var canvas = document.createElement('canvas');
+          var c = canvas.getContext('2d');
+          
+        canvas.width = SCREEN_WIDTH;
+        canvas.height = SCREEN_HEIGHT;
+		//canvas.style.border = "1px solid"; 
+        
+		//canvas variables
+        var xpos=0, 
+            ypos=0, 
+            index=0, 
+            numFrames = 19, 
+            frameSize= 328;
+         
+          // Add canvas
+          document.body.appendChild(canvas); 
+
+           //load image
+        image = new Image();
+        image.src = "rarara.png";
+        
+        image.onload = function() {
+        
+            //this is the loop set for 3 frames per second
+            setInterval(loop, 1000 / 3);
+        }
+               
+    
+        function loop() {
+
+            c.clearRect(0,0, SCREEN_HEIGHT,SCREEN_WIDTH);
+            
+            c.drawImage(image,xpos,ypos,frameSize,258,0,0,frameSize, frameSize);
+            
+            xpos += frameSize;
+            index += 1;
+            
+            //start over
+            if (index >= numFrames) {
+                xpos =0;
+                ypos =0;
+                index=0;    
+            } else if (xpos + frameSize > image.width){
+                xpos =0;
+                ypos += frameSize;
+            }
+            
+            
+        }
+</script>
+
+</body>
+</html>
